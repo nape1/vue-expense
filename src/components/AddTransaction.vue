@@ -4,14 +4,20 @@
     <form id="form" @submit.prevent="onSubmit">
       <div class="form-control">
         <label for="text">Text</label>
-        <input ref="inputRef" type="text" id="text" placeholder="Enter text..." v-model="text" />
+        <input
+          ref="inputRef"
+          type="text"
+          id="text"
+          placeholder="Enter text..."
+          v-model="text"
+        />
       </div>
       <div class="form-control">
         <label for="amount"
           >Amount <br />
           (negative - expense, positive - income)</label
         >
-        <input type="text" id="amount" placeholder="Enter amount..." v-model="amount" />
+        <input type="text" id="amount" placeholder="Enter amount..." v-model.number="amount" />
       </div>
       <button class="btn">Add transaction</button>
     </form>
@@ -35,6 +41,10 @@ const onSubmit = () => {
   if (!text.value || !amount.value) {
     // Display a toast error message if either field is empty
     toast.error('Both fields must be filled.')
+    return
+  }
+  if (typeof amount.value !== 'number') {
+    toast.error('Invalid Amount')
     return
   }
 
