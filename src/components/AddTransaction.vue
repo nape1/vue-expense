@@ -1,10 +1,10 @@
 <template>
-  <section>
+  <section class="bottom-fixed">
     <h3>Add new transaction</h3>
     <form id="form" @submit.prevent="onSubmit">
       <div class="form-control">
         <label for="text">Text</label>
-        <input type="text" id="text" placeholder="Enter text..." v-model="text" />
+        <input ref="inputRef" type="text" id="text" placeholder="Enter text..." v-model="text" />
       </div>
       <div class="form-control">
         <label for="amount"
@@ -24,6 +24,7 @@ import { ref } from 'vue'
 
 const text = ref('')
 const amount = ref('')
+const inputRef = ref(null)
 
 // Get toast interface
 const toast = useToast()
@@ -47,5 +48,14 @@ const onSubmit = () => {
   // Clear form fields
   text.value = ''
   amount.value = ''
+  inputRef.value.focus()
 }
 </script>
+
+<style scoped>
+.bottom-fixed {
+  position: fixed;
+  width: 380px;
+  bottom: 0;
+}
+</style>
