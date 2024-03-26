@@ -1,7 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --bg-main-dark: #212426;
+  --font-light: #FFFDED;
+  --col-green:#498467;
+  --col-green1:#2ecc71;
+  --col-red:#fd3e81;
+  --col-violet:#7D53DE;
+  --field-height:2.5rem;
+  --field-color: #43484d;
+  --dark-border: #2f2f2f
 }
 
 * {
@@ -9,20 +19,28 @@
 }
 
 body {
-  background-color: #f7f7f7;
+  background-color: var(--bg-main-dark);
+  color:var(--font-light);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  font-family: 'Lato', sans-serif;
-  font-size: 18px;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
 }
 
 .container {
-  margin: 30px auto;
-  width: 400px;
+  margin: 10px auto;
+  width: 380px;
+  section{
+    border: 1px solid var(--dark-border);
+    margin-block: 10px;
+    border-radius: 4px;
+    padding: 5px;
+  }
 }
 
 h1 {
@@ -31,9 +49,7 @@ h1 {
 }
 
 h3 {
-  border-bottom: 1px solid #bbb;
-  padding-bottom: 10px;
-  margin: 40px 0 10px;
+  margin: 10px 0;
 }
 
 h4 {
@@ -42,7 +58,8 @@ h4 {
 }
 
 .inc-exp-container {
-  background-color: #fff;
+  background-color: #2d2d2d;
+  border-radius: 4px;
   box-shadow: var(--box-shadow);
   padding: 20px;
   display: flex;
@@ -66,11 +83,11 @@ h4 {
 }
 
 .money.plus {
-  color: #2ecc71;
+  color: var(--col-green1);
 }
 
 .money.minus {
-  color: #c0392b;
+  color: var(--col-red);
 }
 
 label {
@@ -80,17 +97,27 @@ label {
 
 input[type='text'],
 input[type='number'] {
-  border: 1px solid #dedede;
+  border: none;
+  outline: none;
   border-radius: 2px;
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px;
   width: 100%;
+  font-weight: 500;
+  letter-spacing: .05rem;
+  background-color: var(--field-color);
+  color: var(--font-light);
+  min-height: var(--field-height);
+
+}
+.form-control{
+    margin-bottom: 15px;
 }
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: var(--col-violet);
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -99,6 +126,7 @@ input[type='number'] {
   margin: 10px 0 30px;
   padding: 10px;
   width: 100%;
+  border-radius: 4px;
 }
 
 .btn:focus,
@@ -113,27 +141,36 @@ input[type='number'] {
 }
 
 .list li {
-  background-color: #fff;
+  background-color: var(--field-color);
   box-shadow: var(--box-shadow);
-  color: #333;
+  color: var(--font-light);
+  min-height: var(--field-height);
+  border-radius: 2px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: relative;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 5px 15px;
+  margin: 6px 0;
+  font-weight: 500;
+  letter-spacing: .05rem;
+  span{
+    font-weight: 600;
+  }
 }
 
-.list li.plus {
-  border-right: 5px solid #2ecc71;
+.list li.plus span {
+  color: var(--col-green1);
 }
 
-.list li.minus {
-  border-right: 5px solid #c0392b;
+.list li.minus span {
+  color: var(--col-red);
 }
 
 .delete-btn {
   cursor: pointer;
-  background-color: #e74c3c;
+  color: var(--col-red);
+  background-color: transparent;
   border: 0;
   color: #fff;
   font-size: 20px;
@@ -141,12 +178,14 @@ input[type='number'] {
   padding: 2px 5px;
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 100%;
   transform: translate(-100%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
 }
 
 .list li:hover .delete-btn {
-  opacity: 1;
+  transform: translate(0%, -50%);
+  z-index: 0;
+
 }
